@@ -25,6 +25,16 @@
                 <explicitRemovals>
                     <li>FibrousMechanites</li>
                     <li>SensoryMechanites</li>
+                    <li>Dementia</li>
+                    <li>Alzheimers</li>
+                    <li>Asthma</li>
+                    <li>HeartArteryBlockage</li>
+                    <li>Carcinoma</li>
+                    <li>HearingLoss</li>
+                    <li>Cataract</li>
+                    <li>BadBack</li>
+                    <li>Frail</li>
+                    <li>ResurrectionPsychosis</li>
                 </explicitRemovals>
                 <growthTicks>600</growthTicks>
 				<growthText>Growth: </growthText>
