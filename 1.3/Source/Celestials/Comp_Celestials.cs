@@ -50,7 +50,7 @@ namespace Celestials
                     isCelestial = true;
                 }
 
-                AddCelestialHediff();
+                AddCelestialHediff(true);
 
                 alreadyChecked = true;
             }
@@ -67,14 +67,14 @@ namespace Celestials
             }
         }
 
-        public void AddCelestialHediff()
+        public void AddCelestialHediff(bool disableWarning = false)
         {
             if (isCelestial)
             {
                 Hediff hediff = HediffMaker.MakeHediff(CelestialsDefOf.O21_CelestialHediff, parent as Pawn);
                 (parent as Pawn).health.AddHediff(hediff);
             }
-            else
+            else if(!disableWarning)
             {
                 Log.Warning("Attempted to add Celestial hediff to a pawn who is not a Celestial.");
             }
