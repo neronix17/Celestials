@@ -40,21 +40,6 @@ namespace Celestials
                 alreadyChecked = true;
             }
 
-            // Check if not already done.
-            if (!alreadyChecked)
-            {
-                isCelestial = ViableCandidate() && Rand.Chance(CelestialsMod.settings.celestialChance);
-
-                if((parent as Pawn).health.hediffSet.HasHediff(CelestialsDefOf.O21_CelestialHediff))
-                {
-                    isCelestial = true;
-                }
-
-                AddCelestialHediff(true);
-
-                alreadyChecked = true;
-            }
-
             // Blacklist Backwards Compatibility
             if (!ViableCandidate())
             {
@@ -158,6 +143,21 @@ namespace Celestials
             else
             {
                 wasDeadLastTick = false;
+
+                // Check for and add Hediff if not already done.
+                if (!alreadyChecked)
+                {
+                    isCelestial = ViableCandidate() && Rand.Chance(CelestialsMod.settings.celestialChance);
+
+                    if ((parent as Pawn).health.hediffSet.HasHediff(CelestialsDefOf.O21_CelestialHediff))
+                    {
+                        isCelestial = true;
+                    }
+
+                    AddCelestialHediff(true);
+
+                    alreadyChecked = true;
+                }
             }
         }
 
