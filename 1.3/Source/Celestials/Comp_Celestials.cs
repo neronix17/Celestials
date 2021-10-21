@@ -14,6 +14,8 @@ namespace Celestials
     {
         public bool wasDeadLastTick = false;
 
+        public bool celestialCheck = false;
+
         public bool alreadyChecked = false;
 
         public bool isCelestial = false;
@@ -25,6 +27,7 @@ namespace Celestials
             base.PostExposeData();
 
             Scribe_Values.Look(ref wasDeadLastTick, "wasDeadLastTick", false);
+            Scribe_Values.Look(ref celestialCheck, "celestialCheck", false);
             Scribe_Values.Look(ref alreadyChecked, "alreadyChecked", false);
             Scribe_Values.Look(ref isCelestial, "isCelestial", false);
             Scribe_Values.Look(ref resTick, "resTick", 0);
@@ -49,6 +52,21 @@ namespace Celestials
                 }
 
                 isCelestial = false;
+            }
+
+            if (!celestialCheck)
+            {
+                if (!respawningAfterLoad)
+                {
+                    isCelestial = ViableCandidate() && Rand.Chance(CelestialsMod.settings.celestialChance);
+                }
+
+                if ((parent as Pawn).health.hediffSet.HasHediff(CelestialsDefOf.O21_CelestialHediff))
+                {
+                    isCelestial = true;
+                }
+
+                celestialCheck = true;
             }
         }
 
@@ -153,8 +171,10 @@ namespace Celestials
                     {
                         isCelestial = true;
                     }
-
-                    AddCelestialHediff(true);
+                    if (isCelestial)
+                    {
+                        AddCelestialHediff(true);
+                    }
 
                     alreadyChecked = true;
                 }
