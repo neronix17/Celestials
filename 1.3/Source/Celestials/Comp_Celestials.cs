@@ -101,7 +101,8 @@ namespace Celestials
             Pawn pawn = parent as Pawn;
             if(pawn.RaceProps.FleshType == FleshTypeDefOf.Mechanoid
             || pawn.RaceProps.FleshType.defName == "Android"
-            || pawn.RaceProps.FleshType.defName == "Artificial")
+            || pawn.RaceProps.FleshType.defName == "Artificial"
+            || pawn.def.defName == "Zombie")
             {
                 return false;
             }
